@@ -139,6 +139,7 @@ namespace BookEditor
             Review("lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL");
             ReviewHandPiece("-");
             clsBook.BookRead();
+            // 初期値修正（山内 2016/06/07)
             txtBoxSfen.Text = "lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL - b 1";
         }
 
@@ -1055,6 +1056,15 @@ namespace BookEditor
                 indexNo++;
                 BookReadIndex(indexNo - 1);
                 txtBoxIndex.Text = indexNo.ToString();
+                // カーソルのフォーカスを評価値テキストボックスへ移す(山内 2016/06/08)
+                txtBoxValue.Focus();
+                // TabIndexの順番を設定する「評価値」「コメント」「Sfen行」(山内 2016/06/08)
+                txtBoxValue.TabIndex = 0;
+                txtBoxComment.TabIndex = 1;
+                txtBoxSfen.TabIndex =  1;
+
+
+
             }
             else
             {
@@ -1131,7 +1141,12 @@ namespace BookEditor
             if (String.IsNullOrEmpty(txtBoxIndex.Text) == false)
             {
                 btnOutRec.Visible = true;
-                string filePath = "C:/Users/Hiroyuki/BookEditTool/bin/Release/newbook.db";
+
+                
+                // カレントディレクトリを取得する(山内 2016/06/08)
+                string stCurrentDir = System.IO.Directory.GetCurrentDirectory();
+                string filePath = stCurrentDir + "/newbook.db";
+                // MessageBox.Show(filePath);
                 string strKaigyo = "\r\n";
                 string strSpace = " ";
 
@@ -1146,16 +1161,6 @@ namespace BookEditor
                 StreamWriter sw = new StreamWriter(filePath, true, Encoding.GetEncoding("shift_jis"));
                 sw.Write(txtBoxSfen.Text);
                 sw.Write(strNextmove);
-//                sw.Write(BookData.Move);
-//                sw.Write(strSpace);
-//                sw.Write(BookData.NextMove);
-//                sw.Write(strSpace);
-//                sw.Write(txtBoxValue.Text);
-//                sw.Write(strSpace);
-//                sw.Write(txtBoxDepth.Text);
-//                sw.Write(strSpace);
-//                sw.Write(txtBoxUseCount.Text);
-//                sw.Write(strKaigyo);
 
                 sw.Close();
             }
@@ -1163,6 +1168,10 @@ namespace BookEditor
             {
                 btnOutRec.Visible = false;
             }
+            // 書き込んだ newbook.db を関連付けされたアプリケーションで開く処理を追加(山内 2016/06/08)
+            string strCurrentDir = System.IO.Directory.GetCurrentDirectory();
+            string refilePath = strCurrentDir + "/newbook.db";
+            System.Diagnostics.Process.Start(refilePath);
 
         }
     }
