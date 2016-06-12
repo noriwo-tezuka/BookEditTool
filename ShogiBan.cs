@@ -1050,6 +1050,8 @@ namespace BookEditor
 
         private void buttonAfter_Click(object sender, EventArgs e)
         {
+            // 評価値テキストボックスの背景を初期化する(山内 2016/06/12)
+            txtBoxValue.BackColor = Color.White;
             int indexNo = 0;
             if (int.TryParse(txtBoxIndex.Text, out indexNo))
             {
