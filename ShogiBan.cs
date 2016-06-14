@@ -965,7 +965,10 @@ namespace BookEditor
         /// <param name="IndexNo"></param>
         private void BookReadIndex(int IndexNo)
         {
+            // レコード読み込んでから表示(山内 2016/06/14)
             btnOutRec.Visible = true;
+            btnRecDel.Visible = true;
+
             try
             {
                 // 情報取得
@@ -1137,17 +1140,20 @@ namespace BookEditor
         }
 
         // 出力ボタンとSFENレコード出力機能追加(山内 2016/06/04)
+        // レコード削除用ボタン追加(山内 2016/06/14)
         // レコード読み込んでいないときは非表示
         private void btnOutRec_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(txtBoxIndex.Text) == false)
             {
+                // レコード読み込んでから表示(山内 2016/06/14)
                 btnOutRec.Visible = true;
+                btnRecDel.Visible = true;
 
-                
                 // カレントディレクトリを取得する(山内 2016/06/08)
                 string stCurrentDir = System.IO.Directory.GetCurrentDirectory();
                 string filePath = stCurrentDir + "/newbook.db";
+                
                 // MessageBox.Show(filePath);
                 string strKaigyo = "\r\n";
                 string strSpace = " ";
@@ -1175,6 +1181,17 @@ namespace BookEditor
             string refilePath = strCurrentDir + "/newbook.db";
             System.Diagnostics.Process.Start(refilePath);
 
+        }
+
+        private void btnRecDel_Click(object sender, EventArgs e)
+        {
+            // クリップボードに「txtBoxSfen.Text」の値を渡す(山内 2016/06/14)
+            Clipboard.SetText(txtBoxSfen.Text);
+
+            // orgbook.db を関連付けされたアプリケーションで開く処理を追加(山内 2016/06/14)
+            string strCurrentDir = System.IO.Directory.GetCurrentDirectory();
+            string refilePath = strCurrentDir + "/orgbook.db";
+            System.Diagnostics.Process.Start(refilePath);
         }
     }
 }
