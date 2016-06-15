@@ -167,6 +167,7 @@
             this.btnOutRec = new System.Windows.Forms.Button();
             this.txtBoxComment = new System.Windows.Forms.TextBox();
             this.labelComment = new System.Windows.Forms.Label();
+            this.btnRecDel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label12
@@ -540,12 +541,13 @@
             // 
             // buttonReadIndex
             // 
-            this.buttonReadIndex.Location = new System.Drawing.Point(819, 159);
+            this.buttonReadIndex.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.buttonReadIndex.Location = new System.Drawing.Point(819, 128);
             this.buttonReadIndex.Name = "buttonReadIndex";
             this.buttonReadIndex.Size = new System.Drawing.Size(75, 23);
             this.buttonReadIndex.TabIndex = 3;
             this.buttonReadIndex.Text = "読込";
-            this.buttonReadIndex.UseVisualStyleBackColor = true;
+            this.buttonReadIndex.UseVisualStyleBackColor = false;
             this.buttonReadIndex.Click += new System.EventHandler(this.button1_Click);
             // 
             // labelEHand
@@ -1386,7 +1388,7 @@
             // 
             // btnCountAfter
             // 
-            this.btnCountAfter.Location = new System.Drawing.Point(939, 116);
+            this.btnCountAfter.Location = new System.Drawing.Point(939, 96);
             this.btnCountAfter.Name = "btnCountAfter";
             this.btnCountAfter.Size = new System.Drawing.Size(30, 23);
             this.btnCountAfter.TabIndex = 131;
@@ -1396,7 +1398,7 @@
             // 
             // btnCountBefore
             // 
-            this.btnCountBefore.Location = new System.Drawing.Point(904, 116);
+            this.btnCountBefore.Location = new System.Drawing.Point(904, 96);
             this.btnCountBefore.Name = "btnCountBefore";
             this.btnCountBefore.Size = new System.Drawing.Size(30, 23);
             this.btnCountBefore.TabIndex = 130;
@@ -1407,7 +1409,7 @@
             // labelCount
             // 
             this.labelCount.AutoSize = true;
-            this.labelCount.Location = new System.Drawing.Point(816, 103);
+            this.labelCount.Location = new System.Drawing.Point(816, 82);
             this.labelCount.Name = "labelCount";
             this.labelCount.Size = new System.Drawing.Size(29, 12);
             this.labelCount.TabIndex = 129;
@@ -1415,7 +1417,7 @@
             // 
             // textBoxCount
             // 
-            this.textBoxCount.Location = new System.Drawing.Point(818, 118);
+            this.textBoxCount.Location = new System.Drawing.Point(818, 98);
             this.textBoxCount.Name = "textBoxCount";
             this.textBoxCount.Size = new System.Drawing.Size(80, 19);
             this.textBoxCount.TabIndex = 128;
@@ -1423,7 +1425,7 @@
             // labelTeban
             // 
             this.labelTeban.AutoSize = true;
-            this.labelTeban.Location = new System.Drawing.Point(816, 52);
+            this.labelTeban.Location = new System.Drawing.Point(816, 46);
             this.labelTeban.Name = "labelTeban";
             this.labelTeban.Size = new System.Drawing.Size(29, 12);
             this.labelTeban.TabIndex = 133;
@@ -1431,7 +1433,7 @@
             // 
             // textBoxTeban
             // 
-            this.textBoxTeban.Location = new System.Drawing.Point(818, 67);
+            this.textBoxTeban.Location = new System.Drawing.Point(818, 59);
             this.textBoxTeban.Name = "textBoxTeban";
             this.textBoxTeban.Size = new System.Drawing.Size(80, 19);
             this.textBoxTeban.TabIndex = 132;
@@ -1454,12 +1456,13 @@
             // 
             // btnOutRec
             // 
-            this.btnOutRec.Location = new System.Drawing.Point(819, 200);
+            this.btnOutRec.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnOutRec.Location = new System.Drawing.Point(819, 160);
             this.btnOutRec.Name = "btnOutRec";
             this.btnOutRec.Size = new System.Drawing.Size(75, 23);
             this.btnOutRec.TabIndex = 136;
             this.btnOutRec.Text = "出力";
-            this.btnOutRec.UseVisualStyleBackColor = true;
+            this.btnOutRec.UseVisualStyleBackColor = false;
             this.btnOutRec.Visible = false;
             this.btnOutRec.Click += new System.EventHandler(this.btnOutRec_Click);
             // 
@@ -1480,11 +1483,24 @@
             this.labelComment.TabIndex = 138;
             this.labelComment.Text = "コメント欄";
             // 
+            // btnRecDel
+            // 
+            this.btnRecDel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnRecDel.Location = new System.Drawing.Point(819, 192);
+            this.btnRecDel.Name = "btnRecDel";
+            this.btnRecDel.Size = new System.Drawing.Size(75, 23);
+            this.btnRecDel.TabIndex = 139;
+            this.btnRecDel.Text = "DBを開く";
+            this.btnRecDel.UseVisualStyleBackColor = false;
+            this.btnRecDel.Visible = false;
+            this.btnRecDel.Click += new System.EventHandler(this.btnRecDel_Click);
+            // 
             // ShogiBan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1003, 682);
+            this.Controls.Add(this.btnRecDel);
             this.Controls.Add(this.labelComment);
             this.Controls.Add(this.txtBoxComment);
             this.Controls.Add(this.btnOutRec);
@@ -1771,5 +1787,6 @@
         private System.Windows.Forms.Button btnOutRec;
         private System.Windows.Forms.TextBox txtBoxComment;
         private System.Windows.Forms.Label labelComment;
+        private System.Windows.Forms.Button btnRecDel;
     }
 }
