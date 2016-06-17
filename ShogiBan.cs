@@ -1152,7 +1152,8 @@ namespace BookEditor
 
                 // カレントディレクトリを取得する(山内 2016/06/08)
                 string stCurrentDir = System.IO.Directory.GetCurrentDirectory();
-                string filePath = stCurrentDir + "/newbook.db";
+                // 書き込み先を orgbook.db に変更する(山内 2016/06/17)
+                string filePath = stCurrentDir + "/orgbook.db";
                 
                 // MessageBox.Show(filePath);
                 string strKaigyo = "\r\n";
@@ -1171,14 +1172,25 @@ namespace BookEditor
                 sw.Write(strNextmove);
 
                 sw.Close();
+
+                // レコード出力後にorgbook.db を関連付けされたアプリケーションで開く処理を追加(山内 2016/06/17)
+                // クリップボードに「txtBoxSfen.Text」の値を渡す(山内 2016/06/14)
+                Clipboard.SetText(txtBoxSfen.Text);
+
+                //string strCurrentDir = System.IO.Directory.GetCurrentDirectory();
+                //string refilePath = strCurrentDir + "/orgbook.db";
+                System.Diagnostics.Process.Start(filePath);
+                
             }
             else
             {
                 btnOutRec.Visible = false;
             }
             // 書き込んだ newbook.db を関連付けされたアプリケーションで開く処理を追加(山内 2016/06/08)
+            // 書き込み先を orgbook.db に変更する(山内 2016/06/17)
+
             string strCurrentDir = System.IO.Directory.GetCurrentDirectory();
-            string refilePath = strCurrentDir + "/newbook.db";
+            string refilePath = strCurrentDir + "/orgbook.db";
             System.Diagnostics.Process.Start(refilePath);
 
         }
