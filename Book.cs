@@ -26,7 +26,7 @@ namespace BookEditor
 
     class Book
     {
-        string FileName = "orgbook.db";
+        string FileName = "standard_book.db";
         List<BookItem> BookData = new List<BookItem> { };
 
         public bool BookRead()
