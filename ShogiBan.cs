@@ -1005,6 +1005,18 @@ namespace BookEditor
                 txtBoxDepth.Text = BookData.Depth;
                 // 使用回数
                 txtBoxUseCount.Text = BookData.UseCount;
+
+                // 使用回数のテキストボックスの色を変化させる(山内 2016/06/24)
+                if (Convert.ToInt32(txtBoxUseCount.Text) >= 10)
+                {
+
+                    txtBoxUseCount.BackColor = Color.LightPink;
+                }
+                else if (Convert.ToInt32(txtBoxUseCount.Text) < 10)
+                {
+                    txtBoxUseCount.BackColor = Color.LightGreen;
+                }
+
                 // sfen 　
                 // SFEN文字列に手番と手数表示(山内 2016/06/03)
                 //txtBoxSfen.Text = BookData.Sfen
@@ -1055,6 +1067,10 @@ namespace BookEditor
         {
             // 評価値テキストボックスの背景を初期化する(山内 2016/06/12)
             txtBoxValue.BackColor = Color.White;
+
+            // 使用回数テキストボックスの背景を初期化する(山内 2016/06/24)
+            txtBoxUseCount.BackColor = Color.White;
+
             int indexNo = 0;
             if (int.TryParse(txtBoxIndex.Text, out indexNo))
             {
@@ -1064,12 +1080,12 @@ namespace BookEditor
                 // カーソルのフォーカスを評価値テキストボックスへ移す(山内 2016/06/08)
                 txtBoxValue.Focus();
                 // TabIndexの順番を設定する「評価値」「コメント」「Sfen行」(山内 2016/06/08)
+                // TabIndexの順番を設定する「評価値」「使用回数」「コメント」「Sfen行」(山内 2016/06/24)
                 txtBoxValue.TabIndex = 0;
-                txtBoxComment.TabIndex = 1;
-                txtBoxSfen.TabIndex =  1;
-
-
-
+                txtBoxUseCount.TabIndex = 1;
+                txtBoxComment.TabIndex = 2;
+                txtBoxSfen.TabIndex =  3;
+                
             }
             else
             {
@@ -1152,8 +1168,8 @@ namespace BookEditor
 
                 // カレントディレクトリを取得する(山内 2016/06/08)
                 string stCurrentDir = System.IO.Directory.GetCurrentDirectory();
-                // 書き込み先を orgbook.db に変更する(山内 2016/06/17)
-                string filePath = stCurrentDir + "/orgbook.db";
+                // 書き込み先を standard_book.db に変更する(山内 2016/06/17)
+                string filePath = stCurrentDir + "/standard_book.db";
                 
                 // MessageBox.Show(filePath);
                 string strKaigyo = "\r\n";
@@ -1173,12 +1189,12 @@ namespace BookEditor
 
                 sw.Close();
 
-                // レコード出力後にorgbook.db を関連付けされたアプリケーションで開く処理を追加(山内 2016/06/17)
+                // レコード出力後にstandard_book.db を関連付けされたアプリケーションで開く処理を追加(山内 2016/06/17)
                 // クリップボードに「txtBoxSfen.Text」の値を渡す(山内 2016/06/14)
                 Clipboard.SetText(txtBoxSfen.Text);
 
                 //string strCurrentDir = System.IO.Directory.GetCurrentDirectory();
-                //string refilePath = strCurrentDir + "/orgbook.db";
+                //string refilePath = strCurrentDir + "/standard_book.db";
                 System.Diagnostics.Process.Start(filePath);
                 
             }
@@ -1187,10 +1203,10 @@ namespace BookEditor
                 btnOutRec.Visible = false;
             }
             // 書き込んだ newbook.db を関連付けされたアプリケーションで開く処理を追加(山内 2016/06/08)
-            // 書き込み先を orgbook.db に変更する(山内 2016/06/17)
+            // 書き込み先を standard_book.db に変更する(山内 2016/06/17)
 
             string strCurrentDir = System.IO.Directory.GetCurrentDirectory();
-            string refilePath = strCurrentDir + "/orgbook.db";
+            string refilePath = strCurrentDir + "/standard_book.db";
             System.Diagnostics.Process.Start(refilePath);
 
         }
@@ -1200,9 +1216,9 @@ namespace BookEditor
             // クリップボードに「txtBoxSfen.Text」の値を渡す(山内 2016/06/14)
             Clipboard.SetText(txtBoxSfen.Text);
 
-            // orgbook.db を関連付けされたアプリケーションで開く処理を追加(山内 2016/06/14)
+            // standard_book.db を関連付けされたアプリケーションで開く処理を追加(山内 2016/06/14)
             string strCurrentDir = System.IO.Directory.GetCurrentDirectory();
-            string refilePath = strCurrentDir + "/orgbook.db";
+            string refilePath = strCurrentDir + "/standard_book.db";
             System.Diagnostics.Process.Start(refilePath);
         }
     }

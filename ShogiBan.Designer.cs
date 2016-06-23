@@ -1640,7 +1640,7 @@
             this.Controls.Add(this.label11);
             this.Controls.Add(this.labelBoard);
             this.Name = "ShogiBan";
-            this.Text = "定跡ファイル編集ツールVer1.1";
+            this.Text = "定跡ファイル編集ツールVer1.2";
             this.Load += new System.EventHandler(this.ShogiBan_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
